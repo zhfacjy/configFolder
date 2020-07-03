@@ -1,0 +1,38 @@
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  routes:
+    user-service:
+      path: /userapi/**
+      servicdeId: user-service
+      sensitiveHeaders: #让转发前的请求头信息传给服务
+    test-service:
+      path: /testapi/**
+      servicdeId: test-service
+      sensitiveHeaders:
+#  retryable: true 开启重试机制
+
+ribbon:
+  eager-load: # 懒加载，避免实例服务第一次调用出现错误
+    enabled: true
+    clients: user-service,news-service
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  #maxAutoRetries: 1 #超时后重新调用当前实例服务1次
+  #maxAutoRetriesNextServer: 2 #超时后切换实例服务2次
+
+hystrix:
+  threadpool.default.coreSize: "20"
+  threadpool.default.keepAliveTimeMinutes: "2" # 线程占用最大时间值
+  threadpool.default.maxQueueSize: "100000" #队列
+  threadpool.default.queueSizeRejectionThreshold: "500000" #即使maxQueueSize没有达到，达到queueSizeRejectionThreshold该值后，请求也会被拒绝
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: "false" #设置HystrixCommand的执行是否有超时限制。
+        isolation:
+          strategy: "THREAD" # 线程隔离
+          thread:
+            timeoutInMilliseconds: "30000" # 30秒超时，触发熔断
