@@ -41,3 +41,5 @@ auth:
         path: /auth/login,/test/login
     addJwt:
         path: /auth/login,/test/login
+server:
+  port: 5000
