@@ -42,4 +42,4 @@ auth:
     addJwt:
         path: /auth/login,/test/login
 server:
-  port: 5000
+  port: 8762
