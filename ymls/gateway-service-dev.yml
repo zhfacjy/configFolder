@@ -16,7 +16,7 @@ zuul:
 ribbon:
   eager-load: # 懒加载，避免实例服务第一次调用出现错误
     enabled: true
-    clients: user-service,news-service
+    clients: user-service,test-service
   ReadTimeout: 20000
   ConnectTimeout: 20000
   #maxAutoRetries: 1 #超时后重新调用当前实例服务1次
