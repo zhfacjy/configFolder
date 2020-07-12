@@ -4,11 +4,11 @@ zuul:
     socket-timeout-millis: 60000
   routes:
     user-service:
-      path: /userapi/**
+      path: /user/**
       servicdeId: user-service
       sensitiveHeaders: #让转发前的请求头信息传给服务
     test-service:
-      path: /testapi/**
+      path: /test/**
       servicdeId: test-service
       sensitiveHeaders:
 #  retryable: true 开启重试机制
@@ -38,8 +38,8 @@ hystrix:
             timeoutInMilliseconds: "30000" # 30秒超时，触发熔断
 auth:
     ignore:
-        path: /auth/login,/test/login
+        path: /user/auth/login,/test/auth/login
     addJwt:
-        path: /auth/login,/test/login
+        path: /user/auth/login,/test/auth/login
 server:
   port: 8762
