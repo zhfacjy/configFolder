@@ -6,23 +6,16 @@ zuul:
     user-service:
       path: /user/**
       serviceId: user-service
-      strip-prefix: false
+      #strip-prefix: false 代理前缀默认会从请求路径中移除
       sensitiveHeaders: #让转发前的请求头信息传给服务
     test-service:
       path: /test/**
       serviceId: test-service
-      strip-prefix: false
+      #strip-prefix: false 代理前缀默认会从请求路径中移除
       sensitiveHeaders:
 #  retryable: true 开启重试机制
 
-ribbon:
-  eager-load: # 懒加载，避免实例服务第一次调用出现错误
-    enabled: true
-    clients: user-service,test-service
-  ReadTimeout: 20000
-  ConnectTimeout: 20000
-  #maxAutoRetries: 1 #超时后重新调用当前实例服务1次
-  #maxAutoRetriesNextServer: 2 #超时后切换实例服务2次
+
 
 hystrix:
   threadpool.default.coreSize: "20"
