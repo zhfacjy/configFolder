@@ -6,10 +6,12 @@ zuul:
     user-service:
       path: /user/**
       serviceId: user-service
+      strip-prefix: false
       sensitiveHeaders: #让转发前的请求头信息传给服务
     test-service:
       path: /test/**
       serviceId: test-service
+      strip-prefix: false
       sensitiveHeaders:
 #  retryable: true 开启重试机制
 
