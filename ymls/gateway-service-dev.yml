@@ -5,11 +5,11 @@ zuul:
   routes:
     user-service:
       path: /user/**
-      servicdeId: user-service
+      serviceId: user-service
       sensitiveHeaders: #让转发前的请求头信息传给服务
     test-service:
       path: /test/**
-      servicdeId: test-service
+      serviceId: test-service
       sensitiveHeaders:
 #  retryable: true 开启重试机制
 
